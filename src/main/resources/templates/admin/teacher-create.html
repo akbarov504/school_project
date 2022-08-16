@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Create Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+</head>
+<body>
+
+<style>
+    .ck-editor__editable[role="textbox"] {
+        min-height: 200px;
+    }
+    .ck-content .image {
+        max-width: 80%;
+        margin: 20px auto;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand text-white" th:href="@{/admin}">Admin Teacher Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/}" style="cursor: pointer">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/admin/news}" style="cursor: pointer">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/admin/teacher}" style="cursor: pointer">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/auth/logout}" style="cursor: pointer">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto">
+                <form method="post" action="/admin/teacher/create/" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="fullName">Teacher Full Name</label>
+                        <input type="text" class="form-control" id="fullName" name="fullName"
+                               placeholder="Enter Teacher Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Teacher Image</label>
+                        <input type="file" class="form-control-file" id="image" name="image">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Teacher Subject</label>
+                        <select class="form-control" id="subject" name="subject">
+                            <option selected>Choose Teacher Subject</option>
+                            <option value="INGILIZ_TILI">Ingiliz tili oqtuvchisi</option>
+                            <option value="ONA_TILI">Ona tili oqtuvchisi</option>
+                            <option value="RUS_TILI">Rus tili oqtuvchisi</option>
+                            <option value="ADABIYOT">Adabiyot oqtuvchisi</option>
+                            <option value="ONA_TILI_ADABIYOT">Ona tili va Adabiyot oqtuvchisi</option>
+                            <option value="MATEMATIKA">Matematika oqtuvchisi</option>
+                            <option value="BIYALOGIYA">Biyalogiya oqtuvchisi</option>
+                            <option value="TARIX">Tarix oqtuvchisi</option>
+                            <option value="KIMYO">Kimyo oqtuvchisi</option>
+                            <option value="FIZIKA">Fizika oqtuvchisi</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="about">Teacher About</label>
+                        <textarea class="form-control" id="about" rows="13" placeholder="Enter Teacher About"
+                                  name="about"></textarea>
+                    </div>
+                    <div class="d-flex">
+                        <a th:href="@{/admin/teacher}" class="btn btn-secondary">Back</a>
+                        <button type="submit" class="btn btn-primary ml-3">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+<script>
+    ClassicEditor.create(document.querySelector( '#about' ), {
+        toolbar: {
+            items: [
+                'exportPDF','exportWord', '|',
+                'findAndReplace', 'selectAll', '|',
+                'heading', '|',
+                'bold', 'italic', 'strikethrough', 'underline', 'code', 'subscript', 'superscript', 'removeFormat', '|',
+                'bulletedList', 'numberedList', 'todoList', '|',
+                'outdent', 'indent', '|',
+                'undo', 'redo',
+                '-',
+                'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
+                'alignment', '|',
+                'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                'specialCharacters', 'horizontalLine', 'pageBreak', '|',
+                'textPartLanguage', '|',
+                'sourceEditing'
+            ],
+            shouldNotGroupWhenFull: true
+        },
+        list: {
+            properties: {
+                styles: true,
+                startIndex: true,
+                reversed: true
+            }
+        },
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' },
+                { model: 'heading5', view: 'h5', title: 'Heading 5', class: 'ck-heading_heading5' },
+                { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
+            ]
+        },
+        placeholder: 'Welcome to CKEditor 5!',
+        fontFamily: {
+            options: [
+                'default',
+                'Arial, Helvetica, sans-serif',
+                'Courier New, Courier, monospace',
+                'Georgia, serif',
+                'Lucida Sans Unicode, Lucida Grande, sans-serif',
+                'Tahoma, Geneva, sans-serif',
+                'Times New Roman, Times, serif',
+                'Trebuchet MS, Helvetica, sans-serif',
+                'Verdana, Geneva, sans-serif'
+            ],
+            supportAllValues: true
+        },
+        fontSize: {
+            options: [ 10, 12, 14, 'default', 18, 20, 22 ],
+            supportAllValues: true
+        },
+        htmlSupport: {
+            allow: [
+                {
+                    name: /.*/,
+                    attributes: true,
+                    classes: true,
+                    styles: true
+                }
+            ]
+        },
+        htmlEmbed: {
+            showPreviews: true
+        },
+        link: {
+            decorators: {
+                addTargetToExternalLinks: true,
+                defaultProtocol: 'https://',
+                toggleDownloadable: {
+                    mode: 'manual',
+                    label: 'Downloadable',
+                    attributes: {
+                        download: 'file'
+                    }
+                }
+            }
+        },
+        mention: {
+            feeds: [
+                {
+                    marker: '@',
+                    feed: [
+                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
+                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
+                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
+                        '@sugar', '@sweet', '@topping', '@wafer'
+                    ],
+                    minimumCharacters: 1
+                }
+            ]
+        },
+        removePlugins: [
+            'CKBox',
+            'CKFinder',
+            'EasyImage',
+            'RealTimeCollaborativeComments',
+            'RealTimeCollaborativeTrackChanges',
+            'RealTimeCollaborativeRevisionHistory',
+            'PresenceList',
+            'Comments',
+            'TrackChanges',
+            'TrackChangesData',
+            'RevisionHistory',
+            'Pagination',
+            'WProofreader',
+            'MathType'
+        ]
+    });
+</script>
+</html>
