@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import uz.jl.school.base.AbstractService;
 import uz.jl.school.file.File;
 import uz.jl.school.file.FileService;
+import uz.jl.school.subject.SubjectService;
 import uz.jl.school.teacher.dto.TeacherCreateDTO;
 import uz.jl.school.teacher.dto.TeacherUpdateDTO;
 
@@ -14,12 +15,14 @@ import java.util.List;
 
 @Service
 @Transactional
-public class TeacherService extends AbstractService<TeacherMapper, TeacherRepository> {
+public class TeacherService extends AbstractService<TeacherRepository> {
     private final FileService fileService;
+    private final SubjectService subjectService;
 
-    public TeacherService(TeacherMapper mapper, TeacherRepository repository, FileService fileService) {
-        super(mapper, repository);
+    public TeacherService(TeacherRepository repository, FileService fileService, SubjectService subjectService) {
+        super(repository);
         this.fileService = fileService;
+        this.subjectService = subjectService;
     }
 
     public Teacher get(Integer id) {
@@ -44,7 +47,7 @@ public class TeacherService extends AbstractService<TeacherMapper, TeacherReposi
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Teacher teacher = new Teacher(dto.getFullName(), save, dto.getSubject(), dto.getAbout());
+        Teacher teacher = new Teacher(dto.getFullName(), save, subjectService.getByCode(dto.getSubject()), dto.getAbout());
         repository.save(teacher);
     }
 
@@ -53,7 +56,7 @@ public class TeacherService extends AbstractService<TeacherMapper, TeacherReposi
             throw new RuntimeException("Teacher not found !");
         });
         teacher.setFullName(dto.getFullName());
-        teacher.setSubject(dto.getSubject());
+        teacher.setSubject(subjectService.getByCode(dto.getSubject()));
         try {
             teacher.setImage(fileService.save(dto.getImage()));
         } catch (IOException e) {

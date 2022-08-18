@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
-</head>
-<body>
 
+</head>
 <style>
     .ck-editor__editable[role="textbox"] {
         min-height: 200px;
@@ -19,6 +17,7 @@
         margin: 20px auto;
     }
 </style>
+<body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand text-white" th:href="@{/admin}">Admin News Page</a>
@@ -37,6 +36,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" th:href="@{/admin/teacher}" style="cursor: pointer">Teacher</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" th:href="@{/admin/subject}" style="cursor: pointer">Subject</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" th:href="@{/auth/logout}" style="cursor: pointer">Logout</a>
@@ -79,6 +81,8 @@
     </div>
 </section>
 
+<script src="https://cdn.ckbox.io/CKBox/1.1.0/ckbox.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/super-build/ckeditor.js"></script>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -91,9 +95,10 @@
         crossorigin="anonymous"></script>
 
 <script>
-    ClassicEditor.create(document.querySelector( '#body' ), {
+    CKEDITOR.ClassicEditor.create(document.getElementById("body"), {
         toolbar: {
             items: [
+                'ckbox', 'uploadImage', '|',
                 'exportPDF','exportWord', '|',
                 'findAndReplace', 'selectAll', '|',
                 'heading', '|',
@@ -104,7 +109,7 @@
                 '-',
                 'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', 'highlight', '|',
                 'alignment', '|',
-                'link', 'insertImage', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
+                'link', 'blockQuote', 'insertTable', 'mediaEmbed', 'codeBlock', 'htmlEmbed', '|',
                 'specialCharacters', 'horizontalLine', 'pageBreak', '|',
                 'textPartLanguage', '|',
                 'sourceEditing'
@@ -129,68 +134,13 @@
                 { model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
             ]
         },
-        placeholder: 'Welcome to CKEditor 5!',
-        fontFamily: {
-            options: [
-                'default',
-                'Arial, Helvetica, sans-serif',
-                'Courier New, Courier, monospace',
-                'Georgia, serif',
-                'Lucida Sans Unicode, Lucida Grande, sans-serif',
-                'Tahoma, Geneva, sans-serif',
-                'Times New Roman, Times, serif',
-                'Trebuchet MS, Helvetica, sans-serif',
-                'Verdana, Geneva, sans-serif'
-            ],
-            supportAllValues: true
-        },
-        fontSize: {
-            options: [ 10, 12, 14, 'default', 18, 20, 22 ],
-            supportAllValues: true
-        },
-        htmlSupport: {
-            allow: [
-                {
-                    name: /.*/,
-                    attributes: true,
-                    classes: true,
-                    styles: true
-                }
-            ]
-        },
-        htmlEmbed: {
-            showPreviews: true
-        },
-        link: {
-            decorators: {
-                addTargetToExternalLinks: true,
-                defaultProtocol: 'https://',
-                toggleDownloadable: {
-                    mode: 'manual',
-                    label: 'Downloadable',
-                    attributes: {
-                        download: 'file'
-                    }
-                }
-            }
-        },
-        mention: {
-            feeds: [
-                {
-                    marker: '@',
-                    feed: [
-                        '@apple', '@bears', '@brownie', '@cake', '@cake', '@candy', '@canes', '@chocolate', '@cookie', '@cotton', '@cream',
-                        '@cupcake', '@danish', '@donut', '@dragée', '@fruitcake', '@gingerbread', '@gummi', '@ice', '@jelly-o',
-                        '@liquorice', '@macaroon', '@marzipan', '@oat', '@pie', '@plum', '@pudding', '@sesame', '@snaps', '@soufflé',
-                        '@sugar', '@sweet', '@topping', '@wafer'
-                    ],
-                    minimumCharacters: 1
-                }
-            ]
+        placeholder: 'Enter News Body',
+        ckbox: {
+            tokenUrl: 'https://91532.cke-cs.com/token/dev/jgTCyRtyz2S8gviBG6gAuQ3QdrAcmu7PFc7b?limit=10'
         },
         removePlugins: [
-            'CKBox',
-            'CKFinder',
+            // 'ExportPdf',
+            // 'ExportWord',
             'EasyImage',
             'RealTimeCollaborativeComments',
             'RealTimeCollaborativeTrackChanges',

@@ -21,20 +21,10 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = "/video", method = RequestMethod.GET)
-    public String homeVideoPage() {
-        return "index-video";
-    }
-
     @RequestMapping(value = "/about", method = RequestMethod.GET)
     public String aboutPage(Model model) {
         model.addAttribute("teacher_list", teacherService.listForHomePage());
         return "about";
-    }
-
-    @RequestMapping(value = "/faq", method = RequestMethod.GET)
-    public String faqPage() {
-        return "faq";
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)

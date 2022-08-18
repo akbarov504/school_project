@@ -1,7 +1,6 @@
 package uz.jl.school.teacher.dto;
 
 import lombok.*;
-import uz.jl.school.enums.SubjectEnum;
 import uz.jl.school.file.dto.FileGetDTO;
 
 @Getter
@@ -12,6 +11,6 @@ import uz.jl.school.file.dto.FileGetDTO;
 public class TeacherGetDTO {
     private String fullName;
     private FileGetDTO image;
-    private SubjectEnum subject;
+    private String subject;
     private String about;
 }

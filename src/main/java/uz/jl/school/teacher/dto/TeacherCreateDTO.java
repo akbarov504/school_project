@@ -2,7 +2,6 @@ package uz.jl.school.teacher.dto;
 
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
-import uz.jl.school.enums.SubjectEnum;
 
 @Getter
 @Setter
@@ -12,6 +11,6 @@ import uz.jl.school.enums.SubjectEnum;
 public class TeacherCreateDTO {
     private String fullName;
     private MultipartFile image;
-    private SubjectEnum subject;
+    private String subject;
     private String about;
 }

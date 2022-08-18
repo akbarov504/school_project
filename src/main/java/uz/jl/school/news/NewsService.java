@@ -14,11 +14,11 @@ import java.util.List;
 
 @Service
 @Transactional
-public class NewsService extends AbstractService<NewsMapper, NewsRepository> {
+public class NewsService extends AbstractService<NewsRepository> {
     private final FileService fileService;
 
-    public NewsService(NewsMapper mapper, NewsRepository repository, FileService fileService) {
-        super(mapper, repository);
+    public NewsService(NewsRepository repository, FileService fileService) {
+        super(repository);
         this.fileService = fileService;
     }
 

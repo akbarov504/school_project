@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import uz.jl.school.news.NewsService;
 import uz.jl.school.news.dto.NewsCreateDTO;
 import uz.jl.school.news.dto.NewsUpdateDTO;
+import uz.jl.school.subject.SubjectService;
 import uz.jl.school.teacher.TeacherService;
 import uz.jl.school.teacher.dto.TeacherCreateDTO;
 import uz.jl.school.teacher.dto.TeacherUpdateDTO;
@@ -17,6 +18,7 @@ import uz.jl.school.teacher.dto.TeacherUpdateDTO;
 @RequiredArgsConstructor
 public class AdminController {
     private final NewsService newsService;
+    private final SubjectService subjectService;
     private final TeacherService teacherService;
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
@@ -75,7 +77,8 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/teacher/create", method = RequestMethod.GET)
-    public String adminTeacherCreatePage() {
+    public String adminTeacherCreatePage(Model model) {
+        model.addAttribute("subject_list", subjectService.list());
         return "admin/teacher-create";
     }
 
@@ -89,6 +92,7 @@ public class AdminController {
     @RequestMapping(value = "/admin/teacher/update/{id}", method = RequestMethod.GET)
     public String adminTeacherUpdatePage(@PathVariable Integer id, Model model) {
         model.addAttribute("teacher", teacherService.get(id));
+        model.addAttribute("subject_list", subjectService.list());
         return "admin/teacher-update";
     }
 
