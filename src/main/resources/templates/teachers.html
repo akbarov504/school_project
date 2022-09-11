@@ -84,7 +84,7 @@
                         <a th:href="@{/teacher/get/{id}(id=${teacher.id})}"><span style="color: black"
                                                                                   th:text="${teacher.fullName}"></span></a>
                         <br>
-                        <span th:text="${teacher.subject.value}"></span>
+                        <span th:text="${teacher.subject.getName()}"></span>
                     </h4>
                     <div class="col-md-12 text-center">
                         <a th:href="@{/teacher/get/{id}(id=${teacher.id})}" class="btn btn-default btn-courses">To'liq malumot</a>
@@ -127,8 +127,8 @@
                 <div class="address">
                     <h3>Biz bilan bog'lanish</h3>
                     <p><span>Manzil: </span> Shahrisabz shahar Guliston MFY G‘arov ko‘chasi</p>
-                    <p>Elektron pochta : info@unisco.cxom
-                        <br> Telefon raqam : +91 555 668 986</p>
+                    <p>Elektron pochta : ochilovadildora297@gmail.com
+                        <br> Telefon raqam : +998 75 523 63 55</p>
                 </div>
             </div>
         </div>

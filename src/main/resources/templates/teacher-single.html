@@ -79,7 +79,7 @@
                     <img th:src="*{teacher.image.url}" class="img-fluid" alt="#">
                     <div class="teachers-title_block pb-2">
                         <h4><strong th:text="${teacher.fullName}"></strong></h4>
-                        <h6 th:text="${teacher.subject.value}"></h6>
+                        <h6 th:text="${teacher.subject.getName()}"></h6>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,9 @@
                     <div class="col-md-12">
                         <div class="teacher-profile_block qualification_detaile">
                             <h4>Professional Profile</h4>
-                            <p th:utext="${teacher.about}"></p>
+
+                                <p th:utext="${teacher.about}"></p>
+
                         </div>
                     </div>
                 </div>
@@ -117,7 +119,8 @@
                 <div class="tweet_box">
                     <h3>Biz haqimizda qisqacha</h3>
                     <div class="tweet-wrap">
-                        <p style="color: gray;">Bizning 19-umumiy o‘rta ta'lim maktabi Shahrisabz shahar Guliston MFY G‘arov ko‘chasida
+                        <p style="color: gray;">Bizning 19-umumiy o‘rta ta'lim maktabi Shahrisabz shahar Guliston MFY
+                            G‘arov ko‘chasida
                             joylashgan. Ushbu maktab dastlab Namaton QFY G‘arov qishlog‘ida 1969 yilda tashkil bo‘lib
                             Maqsud
                             Shayxzoda nomi bilan nomlamgan.</p>
@@ -128,8 +131,8 @@
                 <div class="address">
                     <h3>Biz bilan bog'lanish</h3>
                     <p><span>Manzil: </span> Shahrisabz shahar Guliston MFY G‘arov ko‘chasi</p>
-                    <p>Elektron pochta : info@unisco.cxom
-                        <br> Telefon raqam : +91 555 668 986</p>
+                    <p>Elektron pochta : ochilovadildora297@gmail.com
+                        <br> Telefon raqam : +998 75 523 63 55</p>
                 </div>
             </div>
         </div>

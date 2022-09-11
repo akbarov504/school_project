@@ -18,5 +18,5 @@ import javax.persistence.Table;
 public class Subject extends Auditable {
     private String name;
     private String code;
-    private String value;
+    private String description;
 }

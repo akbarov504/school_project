@@ -6,12 +6,14 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Objects;
 
 @Service
@@ -19,7 +21,20 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class FileService {
     private final FileRepository repository;
-    private static final String uploadDirectory = "src/main/resources/static/uploads/";
+    private static final String uploadDirectory = "/uploads/";
+    private static final Path rootDir = Path.of(uploadDirectory);
+
+    @PostConstruct
+    public void init() {
+        if (!Files.exists(rootDir)) {
+            try {
+                Files.createDirectories(rootDir);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
     private static final String extensions = "{jpg};{png};{PNG};{JPG};{jpeg};{JPEG};";
 
     public File save(MultipartFile file) throws IOException {
@@ -29,8 +44,8 @@ public class FileService {
             throw new RuntimeException("File format not supported !");
         }
         String generatedName = System.currentTimeMillis() + "." + extension;
-        Path path = Paths.get(uploadDirectory + generatedName);
-        Files.copy(file.getInputStream(), path);
+        Path path = rootDir.resolve(generatedName);
+        Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 
         String url = "http://localhost:8080" + "/".concat("download/".concat(generatedName));
@@ -39,9 +54,9 @@ public class FileService {
     }
 
     public org.springframework.core.io.Resource download(String name) {
-        org.springframework.core.io.Resource resource = null;
+        org.springframework.core.io.Resource resource;
         try {
-            Path location = Paths.get(uploadDirectory + name);
+            Path location = rootDir.resolve( name);
             resource = new UrlResource(location.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;

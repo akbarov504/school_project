@@ -32,7 +32,7 @@
                 <a class="nav-link text-white" th:href="@{/admin/subject}" style="cursor: pointer">Subject</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/auth/logout}" style="cursor: pointer">Logout</a>
+                <a class="nav-link text-white" th:href="@{/logout}" style="cursor: pointer">Logout</a>
             </li>
         </ul>
     </div>
@@ -45,18 +45,18 @@
                 <form method="post" th:action="@{/admin/subject/update/{id}(id=${subject.id})}">
                     <div class="form-group">
                         <label for="subject">Subject Name</label>
-                        <input type="text" class="form-control" id="subject" name="name"
+                        <input type="text" class="form-control" id="subject" name="name" required
                                th:value="${subject.name}">
                     </div>
                     <div class="form-group">
                         <label for="code">Subject Code</label>
-                        <input type="text" class="form-control" id="code" name="code"
+                        <input type="text" class="form-control" id="code" name="code" required
                                th:value="${subject.code}">
                     </div>
                     <div class="form-group">
                         <label for="value">Subject Value</label>
-                        <input type="text" class="form-control" id="value" name="value"
-                               th:value="${subject.value}">
+                        <input type="text" class="form-control" id="value" name="value" required
+                               th:value="${subject.description}">
                     </div>
                     <div class="d-flex">
                         <a th:href="@{/admin/subject}" class="btn btn-secondary">Back</a>

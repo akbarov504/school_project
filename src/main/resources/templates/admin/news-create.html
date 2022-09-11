@@ -41,7 +41,7 @@
                 <a class="nav-link text-white" th:href="@{/admin/subject}" style="cursor: pointer">Subject</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/auth/logout}" style="cursor: pointer">Logout</a>
+                <a class="nav-link text-white" th:href="@{/logout}" style="cursor: pointer">Logout</a>
             </li>
         </ul>
     </div>
@@ -51,25 +51,24 @@
     <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
-                <form method="post" action="/admin/news/create/" enctype="multipart/form-data">
+                <form  th:action="@{/admin/news/create/}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">News Title</label>
-                        <input type="text" class="form-control" id="title" name="title"
+                        <input type="text" class="form-control" id="title" name="title" required
                                placeholder="Enter News Title">
                     </div>
                     <div class="form-group">
                         <label for="description">News Description</label>
-                        <textarea class="form-control" id="description" rows="3" placeholder="Enter News Description"
+                        <textarea class="form-control" id="description" rows="3" placeholder="Enter News Description" required
                                   name="description"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">News Image</label>
-                        <input type="file" class="form-control-file" id="image" name="image">
+                        <input type="file" class="form-control-file" id="image" name="image" required>
                     </div>
                     <div class="form-group">
                         <label for="body">News Body</label>
-                        <textarea class="form-control" id="body" rows="13" placeholder="Enter News body"
-                                  name="body"></textarea>
+                        <textarea name="body" class="form-control" id="body" rows="13" placeholder="Enter News body" ></textarea>
                     </div>
                     <div class="d-flex">
                         <a th:href="@{/admin/news}" class="btn btn-secondary">Back</a>

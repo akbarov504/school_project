@@ -31,7 +31,7 @@
                 <a class="nav-link text-white" th:href="@{/admin/subject}" style="cursor: pointer">Subject</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" th:href="@{/auth/logout}" style="cursor: pointer">Logout</a>
+                <a class="nav-link text-white" th:href="@{/logout}" style="cursor: pointer">Logout</a>
             </li>
         </ul>
     </div>
@@ -53,7 +53,7 @@
                                 <a th:href="@{/teacher/get/{id}(id=${teacher.id})}"><span style="color: black"
                                                                                           th:text="${teacher.fullName}"></span></a>
                                 <br>
-                                <span th:text="${teacher.subject.value}"></span>
+                                <span th:text="${teacher.subject.description}"></span>
                             </h4>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/admin/teacher/update/{id}(id=${teacher.id})}"

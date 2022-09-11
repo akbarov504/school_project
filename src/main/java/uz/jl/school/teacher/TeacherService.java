@@ -41,7 +41,7 @@ public class TeacherService extends AbstractService<TeacherRepository> {
     }
 
     public void create(TeacherCreateDTO dto) {
-        File save = null;
+        File save;
         try {
             save = fileService.save(dto.getImage());
         } catch (IOException e) {
