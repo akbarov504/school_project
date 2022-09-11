@@ -33,7 +33,7 @@ public class SubjectService extends AbstractService<SubjectRepository> {
 
         subject.setName(dto.getName());
         subject.setCode(dto.getCode());
-        subject.setValue(dto.getValue());
+        subject.setDescription(dto.getValue());
         repository.save(subject);
     }
 

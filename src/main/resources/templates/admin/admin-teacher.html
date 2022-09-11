@@ -53,7 +53,7 @@
                                 <a th:href="@{/teacher/get/{id}(id=${teacher.id})}"><span style="color: black"
                                                                                           th:text="${teacher.fullName}"></span></a>
                                 <br>
-                                <span th:text="${teacher.subject.value}"></span>
+                                <span th:text="${teacher.subject.description}"></span>
                             </h4>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/admin/teacher/update/{id}(id=${teacher.id})}"

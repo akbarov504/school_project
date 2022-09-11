@@ -68,7 +68,29 @@
             </ol>
             <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                    <img class="d-block" src="/images/home-carousel.jpg" alt="First slide">
+                    <img class="d-block" src="/images/mk-1.jpeg" alt="First slide">
+                    <div class="carousel-caption d-md-block">
+                        <div class="slider_title">
+                            <h1>Shahrisabz shahar <br> 19-umumiy o‘rta ta'lim maktabi.</h1>
+                            <h4>Bizning 19-umumiy o‘rta ta'lim maktabi Shahrisabz shahar Guliston MFY G‘arov ko‘chasida
+                                joylashgan. <br> Ushbu maktab dastlab Namaton QFY G‘arov qishlog‘ida 1969 yilda tashkil
+                                bo‘lib Maqsud Shayxzoda nomi bilan nomlamgan.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="/images/mk-2.jpg" alt="First slide">
+                    <div class="carousel-caption d-md-block">
+                        <div class="slider_title">
+                            <h1>Shahrisabz shahar <br> 19-umumiy o‘rta ta'lim maktabi.</h1>
+                            <h4>Bizning 19-umumiy o‘rta ta'lim maktabi Shahrisabz shahar Guliston MFY G‘arov ko‘chasida
+                                joylashgan. <br> Ushbu maktab dastlab Namaton QFY G‘arov qishlog‘ida 1969 yilda tashkil
+                                bo‘lib Maqsud Shayxzoda nomi bilan nomlamgan.</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="/images/mk-3.jpg" alt="First slide">
                     <div class="carousel-caption d-md-block">
                         <div class="slider_title">
                             <h1>Shahrisabz shahar <br> 19-umumiy o‘rta ta'lim maktabi.</h1>
@@ -125,7 +147,7 @@
                         <a th:href="@{/teacher/get/{id}(id=${teacher.id})}"><span style="color: black"
                                                                                   th:text="${teacher.fullName}"></span></a>
                         <br>
-                        <span th:text="*{teacher.subject.value}"></span>
+                        <span th:text="*{teacher.subject.description}"></span>
                     </p>
                 </div>
             </div>
