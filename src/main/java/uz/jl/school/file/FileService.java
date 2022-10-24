@@ -21,7 +21,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class FileService {
     private final FileRepository repository;
-    private static final String uploadDirectory = "/uploads/";
+    private static final String uploadDirectory = "uploads";
     private static final Path rootDir = Path.of(uploadDirectory);
 
     @PostConstruct
