@@ -48,7 +48,7 @@ public class FileService {
         String generatedName = System.currentTimeMillis() + "." + extension;
         Path path = rootDir.resolve(generatedName);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-        String url = "http://"+environment.getProperty("prod.server.ip") + ":" + environment.getProperty("prod.server.port") + "/download/" + generatedName;
+        String url = environment.getProperty("prod.server.address")  + "/download/" + generatedName;
         File saveFile = new File(file.getSize(), originalName, generatedName, extension, (uploadDirectory + generatedName), url);
         return repository.save(saveFile);
     }
