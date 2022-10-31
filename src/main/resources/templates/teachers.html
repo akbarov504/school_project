@@ -79,7 +79,7 @@
         <div class="row d-flex flex-wrap">
             <div class="col-10 mx-auto border" th:each="teacher: ${teacher_list}">
                 <div class="admission_insruction w-100">
-                    <img th:src="*{teacher.image.url}" class="img-fluid" alt="#" style="width: 100%; height: 100%">
+                    <img th:src="@{${teacher.image.url}}" class="img-fluid" alt="#" style="width: 100%; height: 100%">
                     <h4 class="text-center mt-3">
                         <a th:href="@{/teacher/get/{id}(id=${teacher.id})}"><span style="color: black"
                                                                                   th:text="${teacher.fullName}"></span></a>
