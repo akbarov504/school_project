@@ -23,11 +23,11 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/admin/**").authenticated()
+                .antMatchers("/admin/**").authenticated()
                 .anyRequest()
                 .permitAll()
                 .and()
-                .formLogin();
+                .httpBasic();
         return http.build();
     }
 
