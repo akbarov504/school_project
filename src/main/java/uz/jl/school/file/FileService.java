@@ -48,7 +48,7 @@ public class FileService {
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
 
 
-        String url = "http://localhost:8080" + "/".concat("download/".concat(generatedName));
+        String url = "/download/".concat(generatedName);
         File saveFile = new File(file.getSize(), originalName, generatedName, extension, (uploadDirectory + generatedName), url);
         return repository.save(saveFile);
     }
