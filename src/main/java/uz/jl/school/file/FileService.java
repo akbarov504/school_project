@@ -2,6 +2,7 @@ package uz.jl.school.file;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ public class FileService {
     private final FileRepository repository;
     private static final String uploadDirectory = "uploads";
     private static final Path rootDir = Path.of(uploadDirectory);
+    private final Environment environment;
 
     @PostConstruct
     public void init() {
@@ -46,9 +48,8 @@ public class FileService {
         String generatedName = System.currentTimeMillis() + "." + extension;
         Path path = rootDir.resolve(generatedName);
         Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+        String url = environment.getProperty("server.address") + ":" + environment.getProperty("server.port") + "/download/" + generatedName;
 
-
-        String url = "/download/".concat(generatedName);
         File saveFile = new File(file.getSize(), originalName, generatedName, extension, (uploadDirectory + generatedName), url);
         return repository.save(saveFile);
     }
@@ -56,7 +57,7 @@ public class FileService {
     public org.springframework.core.io.Resource download(String name) {
         org.springframework.core.io.Resource resource;
         try {
-            Path location = rootDir.resolve( name);
+            Path location = rootDir.resolve(name);
             resource = new UrlResource(location.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
